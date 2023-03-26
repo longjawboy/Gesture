@@ -1,6 +1,7 @@
 package tw.edu.pu.tcyang.gesture
 
 import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -109,6 +110,16 @@ class MainActivity : AppCompatActivity(), OnGestureListener, OnTouchListener {
             v?.x = event.rawX - v!!.width/2
             v?.y = event.rawY - v!!.height/2
         }
+
+        var r1: Rect = Rect(img1.x.toInt(), img1.y.toInt(),
+            img1.x.toInt() + img1.width, img1.y.toInt() + img1.height)
+        var r2: Rect = Rect(img2.x.toInt(), img2.y.toInt(),
+            img2.x.toInt() + img2.width, img2.y.toInt() + img2.height)
+
+        if(r1.intersect(r2)) {
+            txv.text = "碰撞"
+        }
+
         return true
 
     }
