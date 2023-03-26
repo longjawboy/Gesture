@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -21,4 +22,15 @@ class MainActivity : AppCompatActivity() {
                 "font/HanyiSentyFingerPainting.ttf"))
         txv.getBackground().setAlpha(50)  //0~255透明度值
     }
+
+    override fun onTouchEvent(event: MotionEvent): Boolean {
+        if (txv.text == "手勢辨別"){
+            txv.text = "靜宜之美"
+        }
+        else{
+            txv.text = "手勢辨別"
+        }
+        return true
+    }
+
 }
