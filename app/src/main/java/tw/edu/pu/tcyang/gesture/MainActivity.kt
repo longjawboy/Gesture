@@ -7,12 +7,14 @@ import android.os.Bundle
 import android.view.GestureDetector
 import android.view.GestureDetector.OnGestureListener
 import android.view.MotionEvent
+import android.widget.LinearLayout
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity(), OnGestureListener {
 
     lateinit var txv: TextView
     lateinit var gDetector: GestureDetector
+    var count:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,10 +75,17 @@ class MainActivity : AppCompatActivity(), OnGestureListener {
         //txv.text = "快滑"
         if (e1.x <= e2.x){
             txv.text = "往右快滑"
+            count++
+            if(count>5){count=0}
         }
         else{
             txv.text = "往左快滑"
+            count--
+            if(count<0){count=5}
         }
+        var res:Int = getResources().getIdentifier("pu" + count.toString(),
+            "drawable", getPackageName())
+        findViewById<LinearLayout>(R.id.bg).setBackgroundResource(res)
         return true
     }
 
