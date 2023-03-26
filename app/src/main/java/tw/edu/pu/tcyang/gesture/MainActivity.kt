@@ -55,7 +55,13 @@ class MainActivity : AppCompatActivity(), OnGestureListener {
     }
 
     override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
-        txv.text = "拖曳"
+        //txv.text = "拖曳"
+        if (distanceY >= 0){
+            txv.text = "向上拖曳"
+        }
+        else{
+            txv.text = "向下拖曳"
+        }
         return true
     }
 
@@ -64,7 +70,13 @@ class MainActivity : AppCompatActivity(), OnGestureListener {
     }
 
     override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
-        txv.text = "快滑"
+        //txv.text = "快滑"
+        if (e1.x <= e2.x){
+            txv.text = "往右快滑"
+        }
+        else{
+            txv.text = "往左快滑"
+        }
         return true
     }
 
