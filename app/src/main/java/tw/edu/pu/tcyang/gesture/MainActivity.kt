@@ -7,14 +7,19 @@ import android.os.Bundle
 import android.view.GestureDetector
 import android.view.GestureDetector.OnGestureListener
 import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnTouchListener
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity(), OnGestureListener {
+class MainActivity : AppCompatActivity(), OnGestureListener, OnTouchListener {
 
     lateinit var txv: TextView
     lateinit var gDetector: GestureDetector
     var count:Int = 0
+    lateinit var img1: ImageView
+    lateinit var img2: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +32,10 @@ class MainActivity : AppCompatActivity(), OnGestureListener {
                 "font/HanyiSentyFingerPainting.ttf"))
         txv.getBackground().setAlpha(50)  //0~255透明度值
         gDetector = GestureDetector(this, this)
+        img1 = findViewById(R.id.img1)
+        img2 = findViewById(R.id.img2)
+        img1.setOnTouchListener(this)
+        img2.setOnTouchListener(this)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -87,6 +96,17 @@ class MainActivity : AppCompatActivity(), OnGestureListener {
             "drawable", getPackageName())
         findViewById<LinearLayout>(R.id.bg).setBackgroundResource(res)
         return true
+    }
+
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        if (v==img1){
+            txv.text = "精靈1"
+        }
+        else{
+            txv.text = "精靈2"
+        }
+        return true
+
     }
 
 }
