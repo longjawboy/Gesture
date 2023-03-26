@@ -105,6 +105,10 @@ class MainActivity : AppCompatActivity(), OnGestureListener, OnTouchListener {
         else{
             txv.text = "精靈2"
         }
+        if (event?.action == MotionEvent.ACTION_MOVE){
+            v?.x = event.rawX - v!!.width/2
+            v?.y = event.rawY - v!!.height/2
+        }
         return true
 
     }
