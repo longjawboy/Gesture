@@ -33,10 +33,7 @@ class MainActivity : AppCompatActivity(), OnGestureListener, OnTouchListener {
                 "font/HanyiSentyFingerPainting.ttf"))
         txv.getBackground().setAlpha(50)  //0~255透明度值
         gDetector = GestureDetector(this, this)
-        img1 = findViewById(R.id.img1)
-        img2 = findViewById(R.id.img2)
-        img1.setOnTouchListener(this)
-        img2.setOnTouchListener(this)
+
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -86,12 +83,12 @@ class MainActivity : AppCompatActivity(), OnGestureListener, OnTouchListener {
         if (e1.x <= e2.x){
             txv.text = "往右快滑"
             count++
-            if(count>5){count=0}
+            if(count>3){count=0}
         }
         else{
             txv.text = "往左快滑"
             count--
-            if(count<0){count=5}
+            if(count<0){count=3}
         }
         var res:Int = getResources().getIdentifier("pu" + count.toString(),
             "drawable", getPackageName())
